@@ -4,7 +4,14 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    if user_signed_in? 
+      @id = current_user.id
+      puts @id
+      @user = User.find(current_user.id)
+      # @orders = Order.all() 
+      # @orders.user_id = @id 
+    end
+      # @users = User.all
   end
 
   # GET /users/1
@@ -85,7 +92,7 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:username)
+      params.require(:user).permit(:name)
 
        #fb --> shrouk
       accessible = [ :name, :email ] # extend with your own params

@@ -8,7 +8,17 @@
 </head>
 <body>
 
-<%= yield %>
+	<% if user_signed_in? %>      
+        <h3><a  data-method="get" href="/users">Home</a></h3>
+        <h3><a  data-method="get" href="">Friends</a></h3>
+        <h3><a  data-method="get" href="">Groups</a></h3>
+        <h3><a  data-method="get" href="">Orders</a></h3>
+		<h3><a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href="/users/sign_out">Logout</a></h3>
+	<% else %>
+		<h3><a rel="nofollow" data-method="get" href="/users/sign_in">Sign In</a></h3>        
+        <h3><a rel="nofollow" data-method="get" href="/users/sign_up">Sign Up</a></h3>     
+    <% end %>
+	<%= yield %>
 
 </body>
 </html>

@@ -5,12 +5,14 @@ class User < ActiveRecord::Base
   	devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 	has_and_belongs_to_many :groups
-	
+	has_many :orders
+
 	has_and_belongs_to_many(:users,
     :join_table => "user_friends",
     :foreign_key => "user_id",
     :association_foreign_key => "friend_id")
 
+	# validates :name,  presence: true
 
 
 	#fb --> shrouk 

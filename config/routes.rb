@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   #fb --> by shrouk
-  devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks' }
+  devise_for :users, :controllers => { registrations: 'registrations' ,omniauth_callbacks: 'omniauth_callbacks' }
 
   resources :groups
   resources :items
@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :users
 
 
-  # root 'devise/sessions#new'
+  # root 'users#index'
   match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
 
   # The priority is based upon order of creation: first created -> highest priority.
