@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   #fb --> by shrouk
+
   devise_for :users, :controllers => { registrations: 'registrations' ,omniauth_callbacks: 'omniauth_callbacks' }
 
   resources :groups
