@@ -1,0 +1,170 @@
+/*.test{
+
+	background-color:#333; 
+	color:#FFF;
+	padding: 10px;
+	margin-bottom: 10px;
+	min-height: 100px;
+}
+
+.new {
+
+	background-color: blue;
+	color:#FFF;
+	padding: 10px;
+	margin-bottom: 10px;
+}*/
+
+body{
+
+	padding-top: 40px;
+	height: 2000px;
+}
+
+/*Start Navbar*/
+
+.navbar-inverse .navbar-nav > .active > a ,
+.navbar-inverse .navbar-nav > .active > a:hover ,
+.navbar-inverse .navbar-nav > .active > a:focus
+{
+	background-color: #E41B17;
+
+}
+.navbar-inverse .navbar-nav > li > a
+{
+	color: #BBB;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	font-size:16px;
+}
+
+.dropdown-menu{
+
+	background-color: #333;
+}
+
+.dropdown-menu > li > a
+{
+	color: #FFF;
+	-webkit-transition:padding 0.5s ease;
+	-moz-transition:padding 0.5s ease;
+	/*border-top:3px solid #E41B17;*/
+}
+
+.navbar-nav > li > .dropdown-menu
+{
+	left:0;
+	right:auto;
+}
+/*.navbar-right.dropdown-menu
+{
+	left:0;
+	right:auto;
+} 
+*/
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus
+{
+	background-color:#E41B17;
+	color: #FFF;
+	padding-left:30px;
+}
+
+.navbar-brand{
+	color: #BBB;
+	font-size:30px;
+	line-height: 30px;
+}
+
+.navbar-brand a{
+
+	background-color:#E41B17;
+}
+
+/*End Navbar*/
+
+/*Start Slider*/
+
+.carousel-inner{
+	/* margin-left:200px; */
+	margin:auto;
+	width:1100px;
+	height:600px;
+}
+
+.carousel-inner p
+{
+	color:blue;
+}
+
+#myslide{
+
+	background-color:#a43d58;
+}
+
+/* .carousel-indicators{
+
+	color:red;
+}
+ */
+
+
+/*End slider*/
+
+/*Start Section about */
+
+.about{
+
+	padding-top: 50px;
+}
+
+.about .lead
+{
+	color:#888;
+	font-size: 25px;
+	margin-top: 15px;
+}
+
+.about h1
+{
+	color:#E41B17;
+	font-weight: bold;
+}
+
+
+/*End Section about */
+
+/*Start Section Feature */
+
+.feature{
+
+	padding-top: 50px;
+	padding-bottom: 50px;
+	background-color:#EEE;
+}
+
+.feature h1
+{
+	margin-bottom: 30px;
+}
+
+.feature .feat
+{
+	margin-bottom: 30px;
+}
+
+.feature .feat p
+{
+	line-height:2em;
+	font-size: 15px;
+
+}
+
+.feature .feat span.glyphicon
+{
+	font-size: 27px;
+	/*color:#666;*/
+}
+
+
+/*End Section Feature */

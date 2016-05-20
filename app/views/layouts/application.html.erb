@@ -5,21 +5,151 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-</head>
-<body>
 
-	<% if user_signed_in? %>      
-      <b> <a  data-method="get" href="/users">Home</a> || </b>
-      <b> <a  data-method="get" href="">Friends</a> || </b>
-      <b> <a  data-method="get" href="">Groups</a> || </b>
-      <b> <a data-method="get" href="">Orders</a> </b>
-      <b style= 'color:blue '> <%= current_user.name %> </b>
-    <b><a  style='margin-left:700px' data-confirm="Are you sure?" rel="nofollow" data-method="delete" href="/users/sign_out">Logout</a></b>
-	<% else %>
-		<h3><a rel="nofollow" data-method="get" href="/users/sign_in">Sign In</a></h3>        
-        <h3><a rel="nofollow" data-method="get" href="/users/sign_up">Sign Up</a></h3>     
-    <% end %>
-	<%= yield %>
+  
+
+  	<%= stylesheet_link_tag "bootstrap.css" %>
+  	<%= stylesheet_link_tag "style.css" %>
+  	
+	  	<style>
+			#notice_wapper{
+
+				position:absolute;
+				top:0;
+				width:100%;
+				z-index:999;
+				background-color:yellow;
+			}
+			.alert, .notice{
+				padding:2.5rem 0;
+				text-align:center;
+				margin:0;
+				font-size:1.5rem;
+				font-weight:700;
+				color:#FFFFFF;
+				letter-spacing: 1px;
+			}
+
+      #brand{
+
+            display: block;
+            margin-left: 20px;
+            margin-top: 46px;
+        }
+
+
+		</style>
+
+
+  	</head>
+
+
+
+<body style="background-color:#e0e064;">
+<script>
+		
+	$(document).ready(function() {
+		setTimeout(function(){
+
+			$('#notice_wapper').fadeOut('slow', function() {
+				
+				$(this).remove()
+			});
+
+		},4000);
+
+	});
+</script>
+
+
+<% if notice %>
+	<div id="notice_wapper">
+	<p class="notice"><%= notice %></p>
+	<p class="notice"> Hellow</p>
+	</div>
+<% elsif alert %>
+	<div id="notice_wapper">
+	<p class="alert"><%= alert %></p>
+		
+	</div>	
+<% end %>
+
+
+
+
+
+<!-- Start Navbar	 -->
+	 
+	
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+	  <div class="container">
+	    <!-- Brand and toggle get grouped for better mobile display -->
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      
+	      <a  class="navbar-brand" href="#"><span id="brand"><%= image_tag("1.jpg", :alt => "rss feed") %></span></a>
+	    </div>
+
+	    <!-- Collect the nav links, forms, and other content for toggling -->
+	   
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	      <ul class="nav navbar-nav navbar-right">
+	        <li class="active"><a href="#">Home <span class="sr-only">(current)</span></a></li>
+	        <li><a href="#">Friends</a></li>
+	         <li><a href="#">Groups</a></li>
+           <li><a href="#">Orders</a></li>
+	         <li><a href="#">Contact</a></li>
+	         <li><a href="#">Logout</a></li>
+	      </ul> 
+	      
+	    </div><!-- /.navbar-collapse -->
+	  </div><!-- /.container-fluid -->
+	</nav>
+	<!-- End Navbar	 -->
+
+	<!-- start Slider -->
+
+	<div id="myslide" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#myslide" data-slide-to="0" class="active"></li>
+    <li data-target="#myslide" data-slide-to="1"></li>
+    <!-- <li data-target="#myslide" data-slide-to="2"></li> -->
+    <!-- <li data-target="#myslide" data-slide-to="3"></li> -->
+  </ol>
+
+  <!-- Wrapper for slides -->
+		  <div class="carousel-inner" role="listbox">
+		    <div class="item active">
+		      <%= image_tag("4.jpg", :alt => "rss feed") %>
+		    </div>
+		    
+		     <div class="item">
+		     <%= image_tag("6.jpg", :alt => "rss feed") %>		  
+		    </div>
+
+
+		  </div>
+
+		  <!-- Controls -->
+		 
+		</div>
+	
+	<!-- End Slider -->
+	
+	
+<%= yield %>
+
+	
+	<%= javascript_include_tag "jquery-1.12.0.min.js" %>
+	<%= javascript_include_tag "bootstrap.min.js" %>
+	<%= javascript_include_tag "index.js" %>
+
 
 </body>
 </html>
