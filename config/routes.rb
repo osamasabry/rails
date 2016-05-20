@@ -5,11 +5,8 @@ Rails.application.routes.draw do
       post 'rsearch'
     end
   end
-  resources :groups do
-    collection do
-      get 'showUsers'
-    end
-  end
+  get 'groups/destroy' => 'groups#destroy'
+  get 'groups/addUser' => 'groups#addUser'
   #fb --> by shrouk
 
   devise_for :users, :controllers => { registrations: 'registrations' ,omniauth_callbacks: 'omniauth_callbacks' }

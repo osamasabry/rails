@@ -8,6 +8,9 @@
 <p>
   <strong>User:</strong>
   <%= @group.users %>
+  <% @group.users.each do |f| %>
+  <%= f.username %>
+  <% end %>
 </p>
 
 <%= link_to 'Edit', edit_group_path(@group) %> |

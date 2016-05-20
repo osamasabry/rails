@@ -1,5 +1,5 @@
 class GroupsController < ApplicationController
-  before_action :set_group, only: [:show, :edit, :update, :destroy]
+  before_action :set_group, only: [:show, :edit, :update]
 
   # GET /groups
   # GET /groups.json
@@ -10,14 +10,22 @@ class GroupsController < ApplicationController
   # GET /groups/1
   # GET /groups/1.json
   def show
+
   end
 
   # GET /groups/new
   def new
     @group = Group.new
     @groups = Group.all
-  end
 
+    # show group users
+    if (params[:id])
+      @group = Group.find(params[:id])
+   end
+   if (params[:add])
+      @groupnum = params[:add]
+   end
+ end
   # GET /groups/1/edit
   def edit
   end
@@ -48,25 +56,26 @@ class GroupsController < ApplicationController
 
   # DELETE /groups/1
   # DELETE /groups/1.json
-  def showUsers
-    redirect_to @group
+  def addUsers
+    # redirect_to @group
   end
   def destroy
-    @group.destroy
+    if params[:id]
+      # Word.delete_all
+      @group = Group.delete_all(:user_id=>params[:id])
+      # @group.destroy
+    end
+    redirect_to new_group_path
+    
     # render :action => :create
-    # render :new;
-    # redirect_to groups, :notice => "deleted."
-    # redirect_to action: :create
-    #  respond_to do |format|
-    #   format.html { redirect_to new_group_path }
-    #   format.json { head :ok }
-    # end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_group
       @group = Group.find(params[:id])
+      @users=@group.users
+      # redirect_to new_group_path , flash: {groupname: @group.name,groupuser:@users}
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

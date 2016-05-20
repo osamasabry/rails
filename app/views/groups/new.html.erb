@@ -5,14 +5,16 @@
   <%= render 'form' %>
 </div>
 <!-- Show Groups -->
-<div style="border: 4px solid purple;width: 200px;height: 400px;margin-top: 0px;margin-left: 5%;">
+<div style="border: 4px solid purple;width: 250px;height: 400px;margin-top: 0px;margin-left: 5%;">
 <table>
    <tbody>
     <% @groups.each do |group| %>
       <tr>
-      <td style="font-size:20px;color:black"><%= link_to group.name,group,method: :showUsers%></td>
-      </br>
-        <td><%= group.user_id %></td>
+      <!-- </br> -->
+        <td style="font-size:22px"><%= group.name %></td>
+        <td><a href="/groups/new?id=<%=group.id%>" >show</a></td>
+         <td><a href="/groups/new?add=<%=group.id%>" >add</a></td>   
+
         <td><%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
 
@@ -25,10 +27,47 @@
 
 <!-- insert users in the group -->
 <div style="border: 4px solid purple;width: 60%;height: 400px;float: right;margin-top: -425px;margin-right: 10%;">
-<%= render 'users/addUserToGroupForm' %>
+
+<!-- add user to group form -->
+<% if @groupnum %>
+<%= form_for(:user, :url=>{:controller => 'users',:action =>'rsearch'}) do |f| %>
+ 
+
+  <div class="field" style="font-size:20px;float:left;margin-left:30%">
+    <%= f.label :email %>
+    <span style="size:2px" >
+    <%= f.text_field :email,:placeholder => "email" %></span>
+     <%f.hidden_field :addid, :value => @groupnum%>
+    
+  </div>
+  <div class="actions" style="margin-top:2%">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+
+
+<!-- end of adding user to group -->
 <% if flash[:user] %>
   <%= flash[:user] %>
 <% else %>
   <%= flash[:notice] %>
 <% end %>
+<% end %>
+<!-- group users -->
+<!-- users -->
+  <table>
+    <tbody>
+  <% @group.users.each do |f| %>
+  
+      <tr>
+        <td style="font-size:20px"><%= f.username %></td>
+        <td><a href="/groups/destroy?id=<%=f.id%>">delete</a></td>
+      </tr>  
+  <% end %>
+  </tbody>
+  </table>
+</p>
+
+
 </div>

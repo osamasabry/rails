@@ -14,7 +14,6 @@ class UsersController < ApplicationController
     end
       # @users = User.all
   end
-
   # GET /users/1
   # GET /users/1.json
   def show
@@ -50,9 +49,8 @@ class UsersController < ApplicationController
 
   def rsearch
         @user=User.find_by_email(params[:user][:email])
-        puts @user
         if @user
-          redirect_to new_group_path , flash: {user: @user.id}
+          redirect_to new_group_path , flash: {user: @user.id,groubid:params[:user][:addid]}
         else
           redirect_to new_group_path , flash: {notice:'please insert valid username'}
         end
