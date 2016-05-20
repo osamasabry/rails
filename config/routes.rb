@@ -1,5 +1,15 @@
 Rails.application.routes.draw do
-
+  resources :users do
+    collection do
+      get 'search'
+      post 'rsearch'
+    end
+  end
+  resources :groups do
+    collection do
+      get 'showUsers'
+    end
+  end
   #fb --> by shrouk
 
   devise_for :users, :controllers => { registrations: 'registrations' ,omniauth_callbacks: 'omniauth_callbacks' }

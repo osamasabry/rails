@@ -1,0 +1,12 @@
+<%= form_for(:user, :url=>{:controller => 'users',:action =>'rsearch'}) do |f| %>
+ 
+
+  <div class="field" style="font-size:20px;float:left;margin-left:30%">
+    <%= f.label :email %>
+    <span style="size:2px" >
+    <%= f.text_field :email,:placeholder => "email" %></span>
+  </div>
+  <div class="actions" style="margin-top:2%">
+    <%= f.submit %>
+  </div>
+<% end %>

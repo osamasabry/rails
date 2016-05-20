@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 20160518080513) do
   add_index "items", ["user_id"], name: "index_items_on_user_id", using: :btree
 
   create_table "orders", force: :cascade do |t|
-    t.string   "type",       limit: 255
+    t.string   "order_type", limit: 255
     t.string   "restaurant", limit: 255
     t.text     "menu_image", limit: 65535
     t.integer  "user_id",    limit: 4

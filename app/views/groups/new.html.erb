@@ -1,5 +1,32 @@
-<h1>New Group</h1>
+<!-- <h1>New Group</h1> -->
+<!-- create new group -->
 
-<%= render 'form' %>
+<div style="border: 4px ;width:20%;height: 10%;margin-top: 0px;margin-left: 30%;">
+  <%= render 'form' %>
+</div>
+<!-- Show Groups -->
+<div style="border: 4px solid purple;width: 200px;height: 400px;margin-top: 0px;margin-left: 5%;">
+<table>
+   <tbody>
+    <% @groups.each do |group| %>
+      <tr>
+      <td><%= link_to group.name,group,method: :showUsers%></td>
+        <td><%= group.user_id %></td>
+        <td><%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+<br>
 
-<%= link_to 'Back', groups_path %>
+
+<!-- insert users in the group -->
+<div style="border: 4px solid purple;width: 60%;height: 400px;float: right;margin-top: -425px;margin-right: 10%;">
+<%= render 'users/addUserToGroupForm' %>
+<% if flash[:user] %>
+  <%= flash[:user] %>
+<% else %>
+  <%= flash[:notice] %>
+<% end %>
+</div>

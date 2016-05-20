@@ -43,7 +43,19 @@ class UsersController < ApplicationController
       end
     end
   end
+  # search form and actions
+  def search
+  end
 
+  def rsearch
+        @user=User.find_by_email(params[:user][:email])
+        puts @user
+        if @user
+          redirect_to new_group_path , flash: {user: @user.id}
+        else
+          redirect_to new_group_path , flash: {notice:'please insert valid username'}
+        end
+  end
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
