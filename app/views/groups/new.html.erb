@@ -10,10 +10,12 @@
    <tbody>
     <% @groups.each do |group| %>
       <tr>
-      <td><%= link_to group.name,group,method: :showUsers%></td>
+      <td style="font-size:20px;color:black"><%= link_to group.name,group,method: :showUsers%></td>
+      </br>
         <td><%= group.user_id %></td>
         <td><%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
+
     <% end %>
   </tbody>
 </table>

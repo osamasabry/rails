@@ -8,6 +8,7 @@ class UsersController < ApplicationController
       @id = current_user.id
       puts @id
       @user = User.find(current_user.id)
+      
       # @orders = Order.all() 
       # @orders.user_id = @id 
     end
@@ -104,7 +105,7 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:name)
+      params.require(:user).permit(:name ,:image)
 
        #fb --> shrouk
       accessible = [ :name, :email ] # extend with your own params
