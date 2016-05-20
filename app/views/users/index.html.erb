@@ -4,7 +4,7 @@
     <h3 style="margin-left: 150px;">Latest Orders</h3>
 
     <% @user.orders.each do |order| %>
-      <p>
+      <p style='margin:20px'>
         <%= order.order_type  %>  on <%= order.created_at  %>
         <br>
       </p>
@@ -21,6 +21,25 @@
 	  <li><%= h user.username %></li>
 	  <% end %>  
 	</ul>
+
+
+	<% @user_friends.each do |friend| %>
+    	
+
+    	<% friend.orders.each do |order| %>
+   
+	      <p style='margin:20px'>
+	        <%= friend.name %>  has created an order for <%= order.order_type  %> from <%= order.restaurant  %>
+
+	        <br>
+
+	      </p>
+     <% end %>
+    	<br>
+
+    	
+    <% end %>
+
 
 
 

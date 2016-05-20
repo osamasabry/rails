@@ -6,10 +6,23 @@ class UsersController < ApplicationController
   def index
     if user_signed_in? 
       @id = current_user.id
-      puts @id
+     
       @user = User.find(current_user.id)
-      
-      # @orders = Order.all() 
+      @friends = Friendship.where("user_id = ?", current_user.id)
+      @user_friends = []
+      @friends.each do |friend|
+        
+        @id = friend.friend_id
+        puts @id
+        @user_friends << User.find_by(id: @id)
+        
+
+      end 
+      puts "================================================="
+      # puts @user_friends
+      @orders = Order.last(3)
+
+      # # @orders = Order.all() 
       # @orders.user_id = @id 
     end
       # @users = User.all
