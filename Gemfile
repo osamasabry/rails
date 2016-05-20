@@ -43,6 +43,10 @@ gem 'omniauth-google-oauth2'
 gem 'omniauth-linkedin'
 
 
+
+gem 'paperclip', '~> 4.3', '>= 4.3.6'
+gem 'nifty-generators', '~> 0.4.6'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 

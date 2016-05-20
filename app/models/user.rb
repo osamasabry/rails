@@ -7,10 +7,22 @@ class User < ActiveRecord::Base
 	has_and_belongs_to_many :groups
 	has_many :orders
 
-	has_and_belongs_to_many(:users,
-    :join_table => "user_friends",
-    :foreign_key => "user_id",
-    :association_foreign_key => "friend_id")
+	has_many :friendships
+	has_many :friends, :through => :friendships
+	has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id"
+	has_many :inverse_friends, :through => :inverse_friendships, :source => :user
+
+
+
+  	has_attached_file :image, styles: { small: "64x64", med: "100x100", large: "200x200" },
+  					:url  => "/assets/users/:id/:style/:basename.:extension",
+                  	:path => ":rails_root/public/assets/users/:id/:style/:basename.:extension"
+  	validates_attachment :image, :presence => true,:content_type => { :content_type => /\Aimage/ },
+  						:size => { :in => 0..1000.kilobytes }
+	# has_and_belongs_to_many(:users,
+ #    :join_table => "user_friends",
+ #    :foreign_key => "user_id",
+ #    :association_foreign_key => "friend_id")
 
 	# validates :name,  presence: true
 
