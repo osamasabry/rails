@@ -15,17 +15,18 @@ Rails.application.routes.draw do
 
   #fb --> by shrouk
 
-  devise_for :users, :controllers => {registrations: 'registrations' ,omniauth_callbacks: 'omniauth_callbacks' } do
-    collection do
-      get 'search'
-      post 'rsearch'
-    end
-  end
+  devise_for :users, :controllers => {registrations: 'registrations' ,omniauth_callbacks: 'omniauth_callbacks' }
+   
 
   resources :groups
   resources :items
   resources :orders
-  resources :users
+  resources :users do
+     collection do
+      get 'search'
+      post 'rsearch'
+    end
+  end
 
   match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
 
