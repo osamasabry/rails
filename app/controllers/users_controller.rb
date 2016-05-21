@@ -10,23 +10,20 @@ class UsersController < ApplicationController
       @user = User.find(current_user.id)
       @friends = Friendship.where("user_id = ?", current_user.id)
       @user_friends = []
-      @friends.each do |friend|
-        
+      @friends.each do |friend| 
         @id = friend.friend_id
         puts @id
         @user_friends << User.find_by(id: @id)
-        
-
-      end 
-      puts "================================================="
-      # puts @user_friends
+      end
       @orders = Order.last(3)
-
       # # @orders = Order.all() 
       # @orders.user_id = @id 
+    else
+      redirect_to new_user_session_url
     end
       # @users = User.all
   end
+  
   # GET /users/1
   # GET /users/1.json
   def show
@@ -119,7 +116,7 @@ class UsersController < ApplicationController
       params.require(:user).permit(:name ,:image)
 
        #fb --> shrouk
-      accessible = [ :name, :email ] # extend with your own params
+       accessible = [ :name, :email ,:provider ,:uid ] # extend with your own params
       accessible << [ :password, :password_confirmation ] unless params[:user][:password].blank?
       params.require(:user).permit(accessible)
     end

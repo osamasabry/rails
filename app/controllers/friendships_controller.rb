@@ -1,8 +1,10 @@
 class FriendshipsController < ApplicationController
 	
 	def index
+		@user = current_user
 		@friendship = Friendship.new
 		@friendships = Friendship.all
+		
 	end	
 
 	def create

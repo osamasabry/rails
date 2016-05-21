@@ -32,7 +32,7 @@
 
       #brand{
 
-            display: block;
+            /*display: block;*/
             margin-left: 20px;
             margin-top: 46px;
         }
@@ -99,12 +99,17 @@
 	   
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul class="nav navbar-nav navbar-right">
-	        <li class="active"><a href="#">Home <span class="sr-only">(current)</span></a></li>
-	        <li><a href="#">Friends</a></li>
-	         <li><a href="#">Groups</a></li>
-           <li><a href="#">Orders</a></li>
+	      <% if user_signed_in? %>   
+	        <li class="active"><a data-method="get" href="/users">Home <span class="sr-only">(current)</span></a></li>
+	        <li><a data-method="get" href="/friendships">Friends</a></li>
+	         <li><a data-method="get" href="/groups/new">Groups</a></li>
+           <li><a data-method="get" href="/orders">Orders</a></li>
 	         <li><a href="#">Contact</a></li>
-	         <li><a href="#">Logout</a></li>
+	         <li><a data-method="delete" href="/users/sign_out">Logout</a></li>
+	         <% else %>
+				<h3><a rel="nofollow" data-method="get" href="/users/sign_in">Sign In</a></h3>        
+		        <h3><a rel="nofollow" data-method="get" href="/users/sign_up">Sign Up</a></h3>     
+		    <% end %>
 	      </ul> 
 	      
 	    </div><!-- /.navbar-collapse -->

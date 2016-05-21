@@ -1,23 +1,32 @@
 Rails.application.routes.draw do
-  resources :users do
+  
+  # devise_for :users do
+  #   collection do
+  #     get 'search'
+  #     post 'rsearch'
+  #   end
+  # end
+
+  root 'users#index'
+
+  get 'groups/destroy' => 'groups#destroy'
+  get 'groups/addUser' => 'groups#addUser'
+  resources :friendships
+
+  #fb --> by shrouk
+
+  devise_for :users, :controllers => {registrations: 'registrations' ,omniauth_callbacks: 'omniauth_callbacks' } do
     collection do
       get 'search'
       post 'rsearch'
     end
   end
-  get 'groups/destroy' => 'groups#destroy'
-  get 'groups/addUser' => 'groups#addUser'
-  #fb --> by shrouk
-
-  devise_for :users, :controllers => { registrations: 'registrations' ,omniauth_callbacks: 'omniauth_callbacks' }
 
   resources :groups
   resources :items
   resources :orders
   resources :users
 
-
-  # root 'users#index'
   match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
 
   # The priority is based upon order of creation: first created -> highest priority.
