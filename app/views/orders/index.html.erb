@@ -1,6 +1,7 @@
 <p id="notice"><%= notice %></p>
 <br> <br>
-<h1> Orders</h1>
+<div class="container">
+<h1 style="font-size:25px"><b> Orders</b></h1>
 
 
 <a style='margin-left:900px' href="/orders/new">Start New Order</a>
@@ -26,7 +27,7 @@
         <td><%= order.status %></td>
 
         <% if order.status == 'finish'  %>
-          <td><%= link_to 'View', order %>
+          <td><a  href="/orders/<%= order.id %>">View </a>
 
        
         <% else %>
@@ -43,4 +44,5 @@
 </table>
 
 <br>
+</div>
 
