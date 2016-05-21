@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160520183420) do
+ActiveRecord::Schema.define(version: 20160520172631) do
+
+  create_table "friendships", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.integer  "friend_id",  limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
 
   create_table "groups", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -26,6 +33,16 @@ ActiveRecord::Schema.define(version: 20160520183420) do
     t.integer "user_id",  limit: 4, null: false
     t.integer "group_id", limit: 4, null: false
   end
+
+  create_table "identities", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.string   "provider",   limit: 255
+    t.string   "uid",        limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "identities", ["user_id"], name: "index_identities_on_user_id", using: :btree
 
   create_table "items", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -42,7 +59,7 @@ ActiveRecord::Schema.define(version: 20160520183420) do
   add_index "items", ["user_id"], name: "index_items_on_user_id", using: :btree
 
   create_table "orders", force: :cascade do |t|
-    t.string   "type",       limit: 255
+    t.string   "order_type", limit: 255
     t.string   "restaurant", limit: 255
     t.text     "menu_image", limit: 65535
     t.integer  "user_id",    limit: 4
@@ -51,6 +68,14 @@ ActiveRecord::Schema.define(version: 20160520183420) do
   end
 
   add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
+
+  create_table "user_friends", id: false, force: :cascade do |t|
+    t.integer "user_id",   limit: 4, null: false
+    t.integer "friend_id", limit: 4, null: false
+  end
+
+  add_index "user_friends", ["friend_id"], name: "friend_id", using: :btree
+  add_index "user_friends", ["user_id"], name: "user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.text     "username",               limit: 65535
@@ -66,6 +91,11 @@ ActiveRecord::Schema.define(version: 20160520183420) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip",     limit: 255
     t.string   "last_sign_in_ip",        limit: 255
+    t.string   "name",                   limit: 255
+    t.string   "image_file_name",        limit: 255
+    t.string   "image_content_type",     limit: 255
+    t.integer  "image_file_size",        limit: 4
+    t.datetime "image_updated_at"
     t.string   "provider",               limit: 255
     t.string   "uid",                    limit: 255
   end
@@ -74,7 +104,10 @@ ActiveRecord::Schema.define(version: 20160520183420) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "groups", "users"
+  add_foreign_key "identities", "users"
   add_foreign_key "items", "orders"
   add_foreign_key "items", "users"
   add_foreign_key "orders", "users"
+  add_foreign_key "user_friends", "users", column: "friend_id", name: "user_friends_ibfk_2", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "user_friends", "users", name: "user_friends_ibfk_1", on_update: :cascade, on_delete: :cascade
 end
