@@ -1,28 +1,42 @@
 <p id="notice"><%= notice %></p>
+<br> <br>
+<h1> Orders</h1>
 
-<h1>Listing Orders</h1>
 
-<table>
+<a style='margin-left:900px' href="/orders/new">Start New Order</a>
+</b>
+<table style='margin-left:200px ; margin-top:50px ; width:700px ;padding: 15px ; text-align: left' class='table'>
   <thead>
-    <tr>
-      <th>Type</th>
+    <tr style="font-size:15px">
+      <th>Order</th>
       <th>Restaurant</th>
-      <th>Menu image</th>
-      <th>User</th>
-      <th colspan="3"></th>
+      <th>Status</th>
+      <th>Actions</th>
+
+      
+      <th colspan="10"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @orders.each do |order| %>
       <tr>
-        <td><%= order.type %></td>
+        <td><%= order.order_type %></td>
         <td><%= order.restaurant %></td>
-        <td><%= order.menu_image %></td>
-        <td><%= order.user %></td>
-        <td><%= link_to 'Show', order %></td>
-        <td><%= link_to 'Edit', edit_order_path(order) %></td>
-        <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= order.status %></td>
+
+        <% if order.status == 'finish'  %>
+          <td><%= link_to 'View', order %>
+
+       
+        <% else %>
+          <td>
+          <a  href="/orders/<%= order.id %>">View </a>
+          <a  href="/orders/<%= order.id %>/edit">Finish</a>
+    
+          <a data-confirm="Are you sure?" data-rails-ajax-remote="true" data-remote="true" rel="nofollow" data-method="delete" href="/orders/<%= order.id %>">Cancel</a>
+          </td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
@@ -30,4 +44,3 @@
 
 <br>
 
-<%= link_to 'New Order', new_order_path %>

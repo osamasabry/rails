@@ -100,6 +100,7 @@
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul class="nav navbar-nav navbar-right">
 	      <% if user_signed_in? %>   
+	      <li><a data-method="get" href="#"><%= current_user.name %></a></li>
 	        <li class="active"><a data-method="get" href="/users">Home <span class="sr-only">(current)</span></a></li>
 	        <li><a data-method="get" href="/friendships">Friends</a></li>
 	         <li><a data-method="get" href="/groups/new">Groups</a></li>
