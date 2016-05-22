@@ -11,13 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160521165452) do
+
+ActiveRecord::Schema.define(version: 20160522075503) do
 
   create_table "friendships", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
     t.integer  "friend_id",  limit: 4
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.text     "email",      limit: 65535
   end
 
   create_table "groups", force: :cascade do |t|
@@ -54,6 +56,14 @@ ActiveRecord::Schema.define(version: 20160521165452) do
     t.datetime "updated_at",           null: false
   end
 
+  create_table "invitations", force: :cascade do |t|
+    t.integer  "order_id",   limit: 4
+    t.integer  "friend_id",  limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.boolean  "accept"
+  end
+
   create_table "items", force: :cascade do |t|
     t.string   "name",       limit: 255
     t.decimal  "price",                    precision: 10
@@ -67,6 +77,15 @@ ActiveRecord::Schema.define(version: 20160521165452) do
 
   add_index "items", ["order_id"], name: "index_items_on_order_id", using: :btree
   add_index "items", ["user_id"], name: "index_items_on_user_id", using: :btree
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer  "order_id",   limit: 4
+    t.boolean  "accept"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "notifications", ["order_id"], name: "index_notifications_on_order_id", using: :btree
 
   create_table "orders", force: :cascade do |t|
     t.string   "order_type", limit: 255
@@ -109,5 +128,6 @@ ActiveRecord::Schema.define(version: 20160521165452) do
   add_foreign_key "identities", "users"
   add_foreign_key "items", "orders"
   add_foreign_key "items", "users"
+  add_foreign_key "notifications", "orders"
   add_foreign_key "orders", "users"
 end
