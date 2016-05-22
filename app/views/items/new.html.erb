@@ -51,7 +51,6 @@
         <th><%= f.label :name %></th>
         <th><%= f.label :amount %></th>
         <th><%= f.label :price %></th>
-        <th><%= f.label :order_id %></th>
         <th><%= f.label :comment %></th>
       </tr>
     </thead>
@@ -60,7 +59,7 @@
         <td><%= f.text_field :name %>&nbsp;&nbsp;</td>
         <td><%= f.number_field :amount %>&nbsp;&nbsp;</td>
         <td><%= f.text_field :price %>&nbsp;&nbsp;</td>
-        <td><%= f.text_field :order_id %>&nbsp;&nbsp;</td>
+        <td><%= f.hidden_field :order_id,:value => @oid %>&nbsp;&nbsp;</td>
         <td><%= f.text_area :comment %>&nbsp;&nbsp;</td>
         <td><%= f.hidden_field :user_id,:value => current_user.id %>&nbsp;&nbsp;</td>
       </tr>

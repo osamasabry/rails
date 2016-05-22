@@ -16,6 +16,9 @@ class ItemsController < ApplicationController
   def new
     @item = Item.new
     @items = Item.all
+    if params[:oid]
+      @oid=params[:oid]
+    end
   end
 
   # GET /items/1/edit

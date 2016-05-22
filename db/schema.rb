@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160522075503) do
+ActiveRecord::Schema.define(version: 20160522221706) do
 
   create_table "friendships", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
@@ -34,9 +34,6 @@ ActiveRecord::Schema.define(version: 20160522075503) do
     t.integer "user_id",  limit: 4, null: false
     t.integer "group_id", limit: 4, null: false
   end
-
-  add_index "groups_users", ["group_id"], name: "group_id", using: :btree
-  add_index "groups_users", ["user_id"], name: "user_id", using: :btree
 
   create_table "identities", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
@@ -86,6 +83,7 @@ ActiveRecord::Schema.define(version: 20160522075503) do
     t.integer  "user_id",    limit: 4
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
+    t.text     "status",     limit: 65535
   end
 
   add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
@@ -115,8 +113,6 @@ ActiveRecord::Schema.define(version: 20160522075503) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "groups", "users"
-  add_foreign_key "groups_users", "groups", name: "groups_users_ibfk_2", on_update: :cascade, on_delete: :cascade
-  add_foreign_key "groups_users", "users", name: "groups_users_ibfk_1", on_update: :cascade, on_delete: :cascade
   add_foreign_key "identities", "users"
   add_foreign_key "items", "orders"
   add_foreign_key "items", "users"

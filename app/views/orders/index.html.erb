@@ -27,12 +27,11 @@
         <td><%= order.status %></td>
 
         <% if order.status == 'finish'  %>
-          <td><a href="/orders/<%= order.id %>">View </a>
-
-       
+          <!-- <td><a href="/orders/<%= order.id %>">View </a> -->
+          <td><a  href="/items/new?oid=<%= order.id %>">View </a>
         <% else %>
           <td>
-          <a  href="/orders/<%= order.id %>">View </a>
+          <a  href="/items/new?oid=<%= order.id %>">View </a>
           <a  href="/orders/<%= order.id %>/edit">Finish</a>
     
           <a data-confirm="Are you sure?" data-rails-ajax-remote="true" data-remote="true" rel="nofollow" data-method="delete" href="/orders/<%= order.id %>">Cancel</a>

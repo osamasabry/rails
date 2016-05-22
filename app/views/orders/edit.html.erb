@@ -1,6 +1,9 @@
  <div class=" container">
 <h1 style="font-family:Times New Roman"> Finishing Order </h1>
 
+ <div style ="margin-left:400px" >
+<h1 style="font-family:Times New Roman"> Finishing Order </h1>
+
 <%= form_for(@order) do |f| %>
   <% if @order.errors.any? %>
     <div id="error_explanation">
@@ -20,15 +23,13 @@
   
  
    <div class="form-group">
-    <%= f.label :Status %><br>
+    <b> Are you sure you want to finish order ? </b><br>
     
     <% if @order.status == 'finish' %>
     
-    <%= f.text_field :status, :value =>'waiting' %>
-    <% elsif %>
-    <%= f.text_field :status, :value =>'finish' %>
+    <%= f.hidden_field :status, :value =>'waiting' %>
     <% else %>
-    <%= f.text_field :status  %>
+    <%= f.hidden_field :status, :value =>'finish' %>
     <% end %>
     </br> </br>
     </div>
