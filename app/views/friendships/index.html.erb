@@ -1,18 +1,22 @@
 <h1>Friends</h1>
 <%= render 'form' %>
 
+<div style="border:3px solid darkred; margin-top: 20px; padding-top: 20px;">
 <ul>
 
   <% for friendship in @user.friendships %>
   <% if friendship.friend.name %>
   <li>
+  <i style="color:black;margin-left: 20px;">
     <%= h friendship.friend.name %>
-    <span class="btn btn-danger">
-    <i style="color:black;margin-left: 20px;"><%= link_to "remove", friendship, :method => :delete %>
+    <span class="btn btn-danger" style="margin-left: 20px;">
+    <%= link_to "remove", friendship, :method => :delete %>
     </span>
     <br>
+    </i>
   </li>
   <% end %>
 
   <% end %>
 </ul>
+</div>
