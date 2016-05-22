@@ -1,7 +1,7 @@
 <%= form_for(@friendship) do |f| %>
   <div class="field">
     <%= f.label :email %><br>
-    <%= f.text_field :friend_id %>
+    <%= f.email_field :email %>
   </div>
   <div class="actions">
     <%= f.submit %>

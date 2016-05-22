@@ -21,7 +21,7 @@ Devise.setup do |config|
   #fb configuration  --> by shrouk 
   require 'devise/orm/active_record'
   require "omniauth-facebook"
-  config.omniauth :facebook, "931100183654314", "1ed8d07cd70576e8a1832f045137b839"
+  config.omniauth :facebook, "803611839771230", "4ad14bbe52796626335eb3b1e1e2caee"
 
   require "omniauth-google-oauth2"
   config.omniauth :google_oauth2, "226586970551-kvh0pid45e0dg06c2i6dsbqjn71rte62.apps.googleusercontent.com", "4h3qvY12M4MQPncSmkMBjLon", { access_type: "offline", approval_prompt: "" }

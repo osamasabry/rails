@@ -2,10 +2,14 @@
 <%= render 'form' %>
 
 <ul>
+
   <% for friendship in @user.friendships %>
+  <% if friendship.friend.name %>
   <li>
     <%= h friendship.friend.name %>
     (<%= link_to "remove", friendship, :method => :delete %>)
   </li>
-  <% end %>  
+  <% end %>
+
+  <% end %>
 </ul>
