@@ -11,7 +11,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
 ActiveRecord::Schema.define(version: 20160522075503) do
 
   create_table "friendships", force: :cascade do |t|
@@ -48,13 +47,6 @@ ActiveRecord::Schema.define(version: 20160522075503) do
   end
 
   add_index "identities", ["user_id"], name: "index_identities_on_user_id", using: :btree
-
-  create_table "invitations", force: :cascade do |t|
-    t.integer  "order_id",   limit: 4
-    t.integer  "friend_id",  limit: 4
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
-  end
 
   create_table "invitations", force: :cascade do |t|
     t.integer  "order_id",   limit: 4
