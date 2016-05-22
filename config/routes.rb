@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+get 'notifications/index'  
   # devise_for :users do
   #   collection do
   #     get 'search'
@@ -12,15 +12,17 @@ Rails.application.routes.draw do
   get 'groups/destroy' => 'groups#destroy'
   get 'groups/addUser' => 'groups#addUser'
   resources :friendships
-
+  resources :notifications 
   #fb --> by shrouk
 
-  devise_for :users, :controllers => {registrations: 'registrations' ,omniauth_callbacks: 'omniauth_callbacks' }
+  devise_for :users, :controllers => {registrations: 'registrations' ,omniauth_callbacks: 'users/omniauth_callbacks' }
    
 
   resources :groups
   resources :items
-  resources :orders
+  resources :orders do 
+      get 'notifications/add'
+  end
   resources :users do
      collection do
       get 'search'
