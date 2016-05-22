@@ -60,7 +60,17 @@ class UsersController < ApplicationController
   def rsearch
         @user=User.find_by_email(params[:user][:email])
         if @user
-          redirect_to new_group_path , flash: {user: @user.id,groubid:params[:user][:addid]}
+        @groups = Group.all
+        @i=params[:user][:addid]
+        @group = Group.find(@i)
+        
+          if @group.users.exists?(@user.id)
+            redirect_to new_group_path , flash: {notice:'user is existed in group'}
+          else
+            @group.users<<@user
+            redirect_to new_group_path
+          end
+          # redirect_to new_group_path , flash: {user: @user.id,groubid:params[:user][:addid]}
         else
           redirect_to new_group_path , flash: {notice:'please insert valid username'}
         end

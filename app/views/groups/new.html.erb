@@ -1,21 +1,20 @@
 <!-- <h1>New Group</h1> -->
 <!-- create new group -->
-
-<div style="border: 4px ;width:20%;height: 10%;margin-top: 0px;margin-left: 30%;">
+<div style="border: 4px ;width:30%;height: 3%;margin-top: 9%;margin-left: 36%">
   <%= render 'form' %>
 </div>
 <!-- Show Groups -->
-<div style="border: 4px solid purple;width: 250px;height: 400px;margin-top: 0px;margin-left: 5%;">
-<table>
+<div style="border: 4px solid purple;width: 28%;height: 405px;margin-top: 0px;margin-left: 5%;">
+<table class="table">
    <tbody>
     <% @groups.each do |group| %>
       <tr>
       <!-- </br> -->
         <td style="font-size:22px"><%= group.name %></td>
-        <td><a href="/groups/new?id=<%=group.id%>" >show</a></td>
-         <td><a href="/groups/new?add=<%=group.id%>" >add</a></td>   
+        <td><a class="btn btn-info" href="/groups/new?id=<%=group.id%>" >show</a></td>
+         <td><a class="btn btn-primary" href="/groups/new?add=<%=group.id%>" >add</a></td>   
 
-        <td><%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td ><span class="btn btn-danger"><%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' } %></span></td>
       </tr>
 
     <% end %>
@@ -26,10 +25,11 @@
 
 
 <!-- insert users in the group -->
-<div style="border: 4px solid purple;width: 60%;height: 400px;float: right;margin-top: -425px;margin-right: 10%;">
+<div style="border: 4px solid purple;width: 56%;height: 400px;float: right;margin-top: -425px;margin-right: 10%;">
 
 <!-- add user to group form -->
 <% if @groupnum %>
+
 <%= form_for(:user, :url=>{:controller => 'users',:action =>'rsearch'}) do |f| %>
  
 
@@ -37,7 +37,8 @@
     <%= f.label :email %>
     <span style="size:2px" >
     <%= f.text_field :email,:placeholder => "email" %></span>
-     <%f.hidden_field :addid, :value => @groupnum%>
+
+     <%=f.hidden_field :addid, :value => @groupnum%>
     
   </div>
   <div class="actions" style="margin-top:2%">
@@ -56,13 +57,13 @@
 <% end %>
 <!-- group users -->
 <!-- users -->
-  <table>
+  <table class="table">
     <tbody>
   <% @group.users.each do |f| %>
   
       <tr>
         <td style="font-size:20px"><%= f.username %></td>
-        <td><a href="/groups/destroy?id=<%=f.id%>">delete</a></td>
+        <td><a class="btn btn-danger" href="/groups/destroy?gid=<%=f.id%>&id=<%=@groupid%>">delete</a></td>
       </tr>  
   <% end %>
   </tbody>

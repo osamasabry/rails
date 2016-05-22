@@ -21,6 +21,8 @@ class GroupsController < ApplicationController
     # show group users
     if (params[:id])
       @group = Group.find(params[:id])
+      @groupid=params[:id]
+      @groupnum = params[:add]
    end
    if (params[:add])
       @groupnum = params[:add]
@@ -43,15 +45,16 @@ class GroupsController < ApplicationController
   # PATCH/PUT /groups/1
   # PATCH/PUT /groups/1.json
   def update
-    respond_to do |format|
-      if @group.update(group_params)
-        format.html { redirect_to @group, notice: 'Group was successfully updated.' }
-        format.json { render :show, status: :ok, location: @group }
-      else
-        format.html { render :edit }
-        format.json { render json: @group.errors, status: :unprocessable_entity }
-      end
-    end
+    redirect_to new_group_path
+    # respond_to do |format|
+    #   if @group.update(group_params)
+    #     format.html { redirect_to @group, notice: 'Group was successfully updated.' }
+    #     format.json { render :show, status: :ok, location: @group }
+    #   else
+    #     format.html { render :edit }
+    #     format.json { render json: @group.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # DELETE /groups/1
@@ -61,13 +64,14 @@ class GroupsController < ApplicationController
   end
   def destroy
     if params[:id]
-      # Word.delete_all
-      @group = Group.delete_all(:user_id=>params[:id])
-      # @group.destroy
+       @group = Group.find(params[:id])
+     @group.destroy
+      elsif params[:gid]
+        @group = Group.find(params[:groupid])
+        @user = User.find(params[:gid])
+        @group.users.destroy(@user)
     end
     redirect_to new_group_path
-    
-    # render :action => :create
   end
 
   private
