@@ -2,19 +2,31 @@
 <html>
 <head>
   <title>Yalanotlob</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-
-  <%= stylesheet_link_tag "bootstrap.css" %>
+  
+  <%= stylesheet_link_tag "bootstrap.min.css" %>
+  <%= javascript_include_tag "jquery-1.12.0.min.js" %>
+  <%= javascript_include_tag "bootstrap.min.js" %>
   <%= stylesheet_link_tag "style.css" %>
-  <%= stylesheet_link_tag "font-awesome.css" %>
-  <%= stylesheet_link_tag "icon-font.min.css" %>
+  
+
+  
+
 
   <style>
   		.header_top{
 
   			height:50px;
+  		}
+
+  		#welcome{
+
+  			color:#FFF;
+  			margin-right:100px;
+  		}
+  		
+  		.photo{
+
+
   		}
 
   </style>
@@ -29,9 +41,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <!-- //lined-icons -->
 
-<%= javascript_include_tag "amcharts.js" %>
-<%= javascript_include_tag "serial.js" %>
-<%= javascript_include_tag "light.js" %>
+
    
 	<div class="left-content">
 	   <div class="inner-content">
@@ -42,15 +52,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							
 								<div class="header_top">
 									<div class="top_right">
-										<ul>
-											<li><a href="contact.html">help</a></li>|
-											<li><a href="contact.html">Contact</a></li>|
-											<li><a href="checkout.html">Delivery information</a></li>
-										</ul>
+										
 									</div>
+									<% if user_signed_in? %>
 									<div class="top_left">
-										<h2><span></span> Call us : 032 2352 782</h2>
+										
+										<span id="welcome">Welcome <%= current_user.name%></span> 
+										
+											
+										 <%= image_tag(@user.image.url(:small)) %>
+										 
 									</div>
+									<% end %>
 										<div class="clearfix"> </div>
 								</div>
 							
@@ -77,13 +90,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<!--/sidebar-menu-->
 				<div class="sidebar-menu">
 					<header class="logo1">
-						<button class="sidebar-icon"> <span class="fa fa-bars"></span> </button> 
+						<button class="sidebar-icon">  <span class="glyphicon glyphicon-home"></span></button> 
 					</header>
 						<div style="border-top:1px ridge rgba(255, 255, 255, 0.15)"></div>
                            <div class="menu">
 									<ul id="menu" >
 									<% if user_signed_in? %>
-										<li><a href="/users"><i class="fa fa-tachometer"></i> <span>Home</span></a></li>
+										<li><a href="/users"><i class="glyphicon glyphicon-home"></i> <span>Home</span></a></li>
 										<li><a href="/friendships"><i class="fa fa-tachometer"></i> <span>Friends</span></a></li>
 										<li><a href="/groups/new"><i class="fa fa-tachometer"></i> <span>Groups</span></a></li>
 										<li><a href="/orders"><i class="fa fa-tachometer"></i> <span>Orders</span></a></li>
@@ -118,16 +131,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										});
 							</script>
 <!--js -->
-<%= javascript_include_tag "jquery.nicescroll.js" %>
-<%= javascript_include_tag "scripts.js" %>
 
-<!-- Bootstrap Core JavaScript -->
-<%= javascript_include_tag "bootstrap.min.js" %>
- 
-   <!-- /Bootstrap Core JavaScript -->
-   <!-- real-time -->
-
-   <%= javascript_include_tag "jquery.flot.js" %>
  	
 
 	<script type="text/javascript">
@@ -219,7 +223,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 	</script>
 <!-- /real-time -->
-<%= javascript_include_tag "jquery.fn.gantt.js" %>
+
 
     <script>
 
@@ -342,7 +346,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </script>
 
     <%= javascript_include_tag "jquery-1.12.0.min.js" %>
-	<%= javascript_include_tag "bootstrap.min.js" %>
+	
 	<%= javascript_include_tag "index.js" %>
 	<%= javascript_include_tag "menu_jquery.js" %>
 	
