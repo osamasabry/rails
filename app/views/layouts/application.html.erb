@@ -60,7 +60,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										<span id="welcome">Welcome <%= current_user.name%></span> 
 										
 											
-										 <%= image_tag(@user.image.url(:small)) %>
+										 <%= image_tag(current_user.image.url(:small)) %>
 										 
 									</div>
 									<% end %>
