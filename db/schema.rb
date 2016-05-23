@@ -88,6 +88,14 @@ ActiveRecord::Schema.define(version: 20160522221706) do
 
   add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
 
+  create_table "user_friends", id: false, force: :cascade do |t|
+    t.integer "user_id",   limit: 4, null: false
+    t.integer "friend_id", limit: 4, null: false
+  end
+
+  add_index "user_friends", ["friend_id"], name: "friend_id", using: :btree
+  add_index "user_friends", ["user_id"], name: "user_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.text     "username",               limit: 65535
     t.datetime "created_at",                                        null: false
@@ -107,6 +115,8 @@ ActiveRecord::Schema.define(version: 20160522221706) do
     t.string   "image_content_type",     limit: 255
     t.integer  "image_file_size",        limit: 4
     t.datetime "image_updated_at"
+    t.string   "provider",               limit: 255
+    t.string   "uid",                    limit: 255
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
@@ -118,4 +128,6 @@ ActiveRecord::Schema.define(version: 20160522221706) do
   add_foreign_key "items", "users"
   add_foreign_key "notifications", "orders"
   add_foreign_key "orders", "users"
+  add_foreign_key "user_friends", "users", column: "friend_id", name: "user_friends_ibfk_2", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "user_friends", "users", name: "user_friends_ibfk_1", on_update: :cascade, on_delete: :cascade
 end
